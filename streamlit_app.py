@@ -1,21 +1,20 @@
 import streamlit as st
+import numpy as np
 
-st.title("My Awesome App")
+menu_items={"Google.com","youtube.com"}
+st.set_page_config( layout='wide',
+                    initial_sidebar_state="collapsed",
+                    menu_items={
+                        'Get Help': 'https://www.extremelycoolapp.com/help',
+                        'Report a bug': "https://www.extremelycoolapp.com/bug",
+                        'About': "# This is a header. This is an *extremely* cool app!"
+                    })
+st.title("Project research")
+st.subheader("Project Name")
+with st.form('project'):
+    left, middle, right = st.columns([2,1,1], vertical_alignment="bottom")
 
-@st.fragment()
-def toggle_and_text():
-    cols = st.columns(2)
-    cols[0].toggle("Toggle")
-    cols[1].text_area("Enter text")
+    left.text_input("Write something")
+    right.checkbox("Check me")
+    middle.form_submit_button("click me")
 
-@st.fragment()
-def filter_and_file():
-    cols = st.columns(2)
-    cols[0].checkbox("Filter")
-    cols[1].file_uploader("Upload image")
-
-toggle_and_text()
-cols = st.columns(2)
-cols[0].selectbox("Select", [1,2,3], None)
-cols[1].button("Update")
-filter_and_file()
