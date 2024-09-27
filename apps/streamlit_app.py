@@ -1,5 +1,8 @@
 import streamlit as st
 import numpy as np
+import warnings
+from modules.redisClient import redis_cli
+warnings.filterwarnings('ignore')
 
 menu_items={"Google.com","youtube.com"}
 st.set_page_config( layout='wide',
@@ -11,10 +14,4 @@ st.set_page_config( layout='wide',
                     })
 st.title("Project research")
 st.subheader("Project Name")
-with st.form('project'):
-    left, middle, right = st.columns([2,1,1], vertical_alignment="bottom")
-
-    left.text_input("Write something")
-    right.checkbox("Check me")
-    middle.form_submit_button("click me")
-
+st.write(redis_cli.get_key('key1'))
